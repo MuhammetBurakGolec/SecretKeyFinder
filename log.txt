@@ -1,1 +1,55 @@
 
+Searching in acikkaynak-website
+Searching in afet-yardim-telegram-bot
+Searching in afet-yardim-twitch-bot
+Searching in afet-yardim-twitter-bot
+Searching in ben-iyiyim
+Searching in ben-iyiyim-frontend
+Searching in deprem-io-frontend
+Searching in deprem-yardim-backend
+Searching in acikkaynak-website
+Searching in acikkaynak-website
+Searching in afet-yardim-telegram-bot
+Searching in afet-yardim-twitch-bot
+Searching in afet-yardim-twitter-bot
+Searching in ben-iyiyim
+Searching in ben-iyiyim-frontend
+Searching in deprem-io-frontend
+Searching in deprem-yardim-backend
+Searching in deprem-yardim-backend-go
+Searching in deprem-yardim-cloud-infra
+Searching in deprem-yardim-data
+Searching in deprem-yardim-frontend
+Searching in deprem-yardim-links
+Searching in deprem-yardim-map-iframe
+Searching in deprem-yardim-projesi
+Searching in deprem-yardim-whatsapp
+Searching in deprem-yardimi
+Searching in depremadres-intent-classification-v0
+Searching in acikkaynak-website
+Searching in afet-yardim-telegram-bot
+[93m+        aws-access-key-id: ${{ secrets.LAB_AWS_ACCESS_KEY_ID }}+        aws-secret-access-key: ${{ secrets.LAB_AWS_SECRET_ACCESS_KEY }}[0m
+[93m+        aws-access-key-id: ${{ secrets.LAB_AWS_ACCESS_KEY_ID }}+        aws-secret-access-key: ${{ secrets.LAB_AWS_SECRET_ACCESS_KEY }}[0m
+[93m+        aws-secret-access-key: ${{ secrets.LAB_AWS_SECRET_ACCESS_KEY }}+        aws-region: eu-central-1[0m
+[93m+        aws-access-key-id: ${{ secrets.LAB_AWS_ACCESS_KEY_ID }}+        aws-secret-access-key: ${{ secrets.LAB_AWS_SECRET_ACCESS_KEY }}[0m
+[93m+        aws-access-key-id: ${{ secrets.LAB_AWS_ACCESS_KEY_ID }}+        aws-secret-access-key: ${{ secrets.LAB_AWS_SECRET_ACCESS_KEY }}[0m
+[93m+        aws-secret-access-key: ${{ secrets.LAB_AWS_SECRET_ACCESS_KEY }}+        aws-region: eu-central-1[0m
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+[93m SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key()) [0m
+[93m SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key()) [0m
+[93m SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key()) [0m
+[93m SECRET_KEY = os.getenv('SECRET_KEY', get_random_secret_key()) [0m
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in ben-iyiyim
+Searching in afet-yardim-telegram-bot

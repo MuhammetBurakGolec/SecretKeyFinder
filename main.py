@@ -3,7 +3,7 @@ from prettytable import PrettyTable
 import base64
 import json
 import sys
-import progress
+import core.textcheck as textcheck
 
 # FIXME : User must be specified from the itdepremdata file
 
@@ -36,7 +36,8 @@ def keysearch(responsein):
     for line in responsein.split("\n"):
         for keyword in search_terms:
             if keyword in line:
-                print("\033[93m"+line,responsein.split("\n")[responsein.split("\n").index(line)+1]+"\033[0m"); logging = open("log.txt", "a"); logging.write("\033[93m"+line+responsein.split("\n")[responsein.split("\n").index(line)+1]+"\033[0m\n"); logging.close()
+                if not textcheck.find_template_text(line):
+                    print("\033[93m"+line,responsein.split("\n")[responsein.split("\n").index(line)+1]+"\033[0m"); logging = open("log.txt", "a"); logging.write("\033[93m"+line+responsein.split("\n")[responsein.split("\n").index(line)+1]+"\033[0m\n"); logging.close()
     return None
 
 import threading
@@ -79,11 +80,9 @@ def main():
 
         # Get Repositories
         urlForGetReposRaw = f"https://api.github.com/{type}/{github_username}/repos"
-        print(urlForGetReposRaw)
         responseForRepos = requests.get(urlForGetReposRaw, headers=apiSign()).text
         reporaw = json.loads(responseForRepos)
         for repository in reporaw:
-            print(reporaw)
             repoName=(repository["name"])
             if repoName in repolist:
 
