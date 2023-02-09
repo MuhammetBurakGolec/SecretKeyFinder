@@ -5,6 +5,9 @@ import json
 import sys
 import progress
 
+# FIXME : User must be specified from the itdepremdata file
+
+
 with open ('itdeprem.data', 'r') as f:
     data = f.read()
     repolist = list(data.split('\n'))
