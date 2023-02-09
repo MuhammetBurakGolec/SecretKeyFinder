@@ -1,8 +1,8 @@
 import re
 
 def find_template_text(text):
-    pattern = r"\$\{\{ [a-zA-Z0-9_]+ \}\}"
-    pattern_2 = r"\$\{\{[a-zA-Z0-9_]+\}\}"
+    pattern = r"\$\{\{ [\w\W]+ \}\}"
+    pattern_2 = r"\$\{\{[\w\W]+\}\}"
     match = re.search(pattern, text)
     match_2 = re.search(pattern_2, text)
 
