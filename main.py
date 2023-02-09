@@ -18,30 +18,6 @@ if "--help" in sys.argv:
     print(scriptusage)
     sys.exit()
 
-
-# if len(sys.argv)<2:
-#     print(scriptusage)
-#     sys.exit()
-
-# if "--mode" in sys.argv:
-#     if sys.argv[sys.argv.index("--mode")+1] == "orgs":
-#         type="orgs"
-#     elif sys.argv[sys.argv.index("--mode")+1] == "users":
-#         pass
-#     else:
-#         print(scriptusage)
-# else:
-#     type="users"
-
-# if "--debug" in sys.argv:
-#     debug_mode=True
-# else:
-#     debug_mode=False
-
-# try:
-#     github_username = sys.argv[sys.argv.index("--name")+1]
-# except:
-#     print(scriptusage)
 type="users"
 github_username = "acikkaynak"
 debug_mode=True
@@ -60,6 +36,36 @@ def keysearch(responsein):
                 print("\033[93m"+line,responsein.split("\n")[responsein.split("\n").index(line)+1]+"\033[0m"); logging = open("log.txt", "a"); logging.write("\033[93m"+line+responsein.split("\n")[responsein.split("\n").index(line)+1]+"\033[0m\n"); logging.close()
     return None
 
+import threading
+
+def process_commit(commitsha, github_username, repoName, saved_session, f, table, found, debug_mode):
+    if commitsha+"\n" in saved_session:
+        print("Already Scanned")
+        return
+    response = requests.get(f"https://github.com/{github_username}/{repoName}/commit/{commitsha}.patch", headers=apiSign()).text
+    clean = keysearch(response)
+    f.writelines(str(commitsha)+"\n")
+    if clean != None:
+        if debug_mode: print("\033[93m" + str(clean) + "\033[0m")
+        table.add_row([repoName, commitsha, clean])
+        found.append(clean)
+        
+        if debug_mode:print("Commit:"+str(commitsha));logging = open("log.txt", "a"); logging.write("Commit:"+str(commitsha)+"\n"); logging.close()
+        if debug_mode:print(clean);logging = open("log.txt", "a"); logging.write("found"); logging.close()
+
+def run_threads(commitsraw, github_username, repoName, saved_session, f, table, found, debug_mode):
+    threads = []
+    temporary_ = []
+    for commits in commitsraw:
+        temporary_.append(commits["sha"])
+
+    for commitsha in temporary_:
+        t = threading.Thread(target=process_commit, args=(commitsha, github_username, repoName, saved_session, f, table, found, debug_mode))
+        threads.append(t)
+        t.start()
+
+    for t in threads:
+        t.join()
 
 def main():
 
@@ -74,6 +80,7 @@ def main():
         responseForRepos = requests.get(urlForGetReposRaw, headers=apiSign()).text
         reporaw = json.loads(responseForRepos)
         for repository in reporaw:
+            print(reporaw)
             repoName=(repository["name"])
             if repoName in repolist:
 
@@ -87,27 +94,9 @@ def main():
                 responseforcommits = requests.get(urlforgetcommitsraw, headers=apiSign()).text
                 commitsraw = json.loads(responseforcommits)
 
-                for commits in commitsraw:
-                        
-                    temporary_=[]
-                    temporary_.append(commits["sha"])
-                    
-                    
-                    if debug_mode:print("Commit:"+str(commits["sha"]));logging = open("log.txt", "a"); logging.write("Commit:"+str(commits["sha"])+"\n"); logging.close()
+                run_threads(commitsraw, github_username, repoName, saved_session, f, table, found, debug_mode)
 
-                    for commitsha in temporary_:
-                        if commitsha+"\n" in saved_session:
-                            print("Already Scanned")
-                            break
 
-                        response = requests.get(f"https://github.com/{github_username}/{repoName}/commit/{commitsha}.patch").text
-                        clean = keysearch(response)
-                        f.writelines(str(commitsha)+"\n")
-                        if clean != None:
-                            if debug_mode: print("\033[93m"+str(clean)+"\033[0m")
-                            table.add_row([repoName, commitsha, clean])
-                            found.append(clean)
-                                                        
 
         print(table)
         f.close()
